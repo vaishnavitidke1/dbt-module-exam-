@@ -1,0 +1,54 @@
+/*2.	Create a stored function by the name of FUNC1 to take three parameters, 
+the sides of a triangle. The function should return a Boolean value:- TRUE if the triangle is valid, FALSE otherwise.
+ A triangle is valid if the length of each side is less than the sum of the lengths of the other two sides. 
+ Check if the dimensions entered can form a valid triangle. 
+ Calling program for the stored function need not be written.*/
+  use cdac;
+ create table triangle1
+ (
+ s1 int,
+ s2 int,
+ s3 int,
+ traingle_size varchar(30)
+ );
+ 
+ delimiter //
+  create function FUNC2(l1 int ,l2 int , l3 int )
+  returns boolean
+  deterministic
+  begin
+  if(l1+l2>l3) and (l1+l3>l2) and (l2+l3> l1) then
+  return true;
+  else 
+  return false;
+  end if ;
+  end ; //
+  delimiter //
+   delimiter //
+   create procedure tri2(l1  float , l2 float , l3 float)
+   begin
+   if FUNC2(l1,l2,l3) then
+    insert into triangle1 values (l1,l2,l3 ,'valid triangle');
+    else 
+        insert into triangle1 values (l1,l2,l3 ,' not valid triangle');
+        end if ;
+        end ; //
+        delimiter //
+         call tri2(12, 13,15) ;
+        
+select * from triangle1
+
+output>>
+a1	a2	a3
+string	stringsec	present
+string		 not present
+
+    
+    
+  
+  
+  
+  
+  
+  
+  

@@ -1,0 +1,5 @@
+deptno,count(ep.deptno)
+10,12
+20,12
+30,12
+40,12
